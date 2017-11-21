@@ -1,4 +1,4 @@
-// BIO_Lab1.cpp: определяет точку входа для консольного приложения.
+п»ї// BIO_Lab1.cpp: РѕРїСЂРµРґРµР»СЏРµС‚ С‚РѕС‡РєСѓ РІС…РѕРґР° РґР»СЏ РєРѕРЅСЃРѕР»СЊРЅРѕРіРѕ РїСЂРёР»РѕР¶РµРЅРёСЏ.
 //
 
 #include "stdafx.h"
@@ -9,10 +9,10 @@ using namespace std;
 
 int NumberOfPattern(char* dnk, char* pattern)
 {
-	int tmp = 0;	// число вхождений
+	int tmp = 0;	// С‡РёСЃР»Рѕ РІС…РѕР¶РґРµРЅРёР№
 	for (int i = 0; i < strlen(dnk); i++)
 	{
-		// сравнивает strlen(pattern) символов dnk с pattern 
+		// СЃСЂР°РІРЅРёРІР°РµС‚ strlen(pattern) СЃРёРјРІРѕР»РѕРІ dnk СЃ pattern 
 		if (strncmp((dnk + i), pattern, strlen(pattern)) == 0)
 			tmp++;
 	}
@@ -23,19 +23,16 @@ int main()
 {
 	setlocale(LC_ALL, "RUS");
 	ifstream fin("input.txt");
-	if (!fin.is_open()) // если файл не открыт
-		cout << "Файл не может быть открыт!\n"; // сообщить об этом
+	if (!fin.is_open()) // РµСЃР»Рё С„Р°Р№Р» РЅРµ РѕС‚РєСЂС‹С‚
+		cout << "Р¤Р°Р№Р» РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РѕС‚РєСЂС‹С‚!\n"; // СЃРѕРѕР±С‰РёС‚СЊ РѕР± СЌС‚РѕРј
 	else
 	{
 		char dnk[80];
 		char *pattern = new char[80];
-		fin.getline(dnk, 80);		// считать 1 строку ( не больше 30 символов)
-		fin.getline(pattern,80);	// считать 2 строку
+		fin.getline(dnk, 80);		// СЃС‡РёС‚Р°С‚СЊ 1 СЃС‚СЂРѕРєСѓ ( РЅРµ Р±РѕР»СЊС€Рµ 30 СЃРёРјРІРѕР»РѕРІ)
+		fin.getline(pattern,80);	// СЃС‡РёС‚Р°С‚СЊ 2 СЃС‚СЂРѕРєСѓ
 		fin.close();
-		//cout << dnk << endl;
-		//cout << pattern << endl;
-		int tmp = NumberOfPattern(dnk, pattern);	// число вхождений
-		//cout << tmp << endl;
+		int tmp = NumberOfPattern(dnk, pattern);	// С‡РёСЃР»Рѕ РІС…РѕР¶РґРµРЅРёР№
 		ofstream fout("output.txt");
 		fout << tmp;
 		fout.close();
