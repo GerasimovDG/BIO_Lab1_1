@@ -4,11 +4,13 @@
 #include "stdafx.h"
 #include <iostream>
 #include <fstream>
-
+#include <string>
 using namespace std;
 
-int NumberOfPattern(char* dnk, char* pattern)
+int NumberOfPattern(string dnk0, string pattern0)
 {
+	const char* dnk = dnk0.c_str();
+	const char* pattern = pattern0.c_str();
 	int tmp = 0;	// число вхождений
 	for (int i = 0; i < strlen(dnk); i++)
 	{
@@ -27,12 +29,16 @@ int main()
 		cout << "Файл не может быть открыт!\n"; // сообщить об этом
 	else
 	{
-		char dnk[80];
-		char *pattern = new char[80];
-		fin.getline(dnk, 80);		// считать 1 строку ( не больше 30 символов)
-		fin.getline(pattern,80);	// считать 2 строку
+		string dnk;
+		string pattern;
+		getline(fin, dnk, '\n');	// cчитываем 1 строку
+		getline(fin, pattern, '\n');	// считываем 2 строку
 		fin.close();
-		int tmp = NumberOfPattern(dnk, pattern);	// число вхождений
+		int tmp = 0;
+		if (pattern.empty() || dnk.empty())
+			tmp = 0;	// если нет одной из строк
+		else
+			tmp = NumberOfPattern(dnk, pattern);	// число вхождений
 		ofstream fout("output.txt");
 		fout << tmp;
 		fout.close();
